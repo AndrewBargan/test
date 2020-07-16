@@ -1,0 +1,188 @@
+.container {
+  display: flex;
+  font-family: Arial;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+}
+
+.error {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  justify-content: center;
+}
+
+.error .message {
+  color: red;
+  flex: 1;
+  text-align: center;
+}
+
+input, select {
+  background-color: #ed863a;
+  color: white;
+}
+
+/* Whitout this rule safari shows white background for <input type="search"> */
+input {
+  -webkit-appearance: textfield;
+}
+
+::placeholder {
+  color: white;
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.search {
+  flex: 7;
+}
+
+select {
+  flex: 5;
+  margin-left: 8px;
+}
+
+.table {
+  background-color: white;
+  font-size: 14px;
+}
+
+.row {
+  display: flex;
+  color: black;
+}
+
+.header {
+  background-color: #782dbe;
+  color: white !important;
+  user-select: none;
+}
+
+.season, .network, .premiere, .name {
+  flex: 4;
+  text-align: center;
+  padding: 7px;
+}
+
+.name {
+  flex: 8 !important;
+  text-align: left !important;
+}
+
+.network {
+  flex: 6 !important;
+}
+
+/* these rules are for asc/desc icons */
+.header .season, .header .network, .header .premiere, .header .name {
+  display: flex;
+  align-items: center;
+}
+
+.header span {
+  flex: 1;
+}
+
+/* asc triangle icon */
+.asc {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid white;
+}
+
+/* desc triangle icon */
+.desc {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid white;
+}
+
+.genres {
+  margin-top: 5px;
+}
+
+.genre {
+  display: inline-block;
+  font-size: 0.8em;
+  border-radius: 10px;
+  padding: 3px 10px;
+  color: white;
+  margin-right: 8px;
+}
+
+.tragedy {
+  background-color: #e33f45;
+}
+
+.crime {
+  background-color: #8331d1;
+}
+
+.drama {
+  background-color: #ab4fd0;
+}
+
+.horror {
+  background-color: #3e3e3e;
+}
+
+.dark-comedy {
+  background-color: #6f6f6f;
+}
+
+.sitcom {
+  background-color: #6f6f33;
+}
+
+.unknown-genre {
+  background-color: #6f6f33;
+}
+
+.no-result {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.footer {
+  display: flex;
+  margin-top: 15px;
+  font-size: 0.9em;
+}
+
+.pages {
+  flex: 1;
+  text-align: center;
+}
+
+.pages span {
+  padding: 2px 8px;
+}
+
+.selected-page {
+  border-radius: 11px;
+  color: white;
+  background-color: #ed863a;
+}
+
+.ipp span {
+  padding: 1px 8px;
+}
+
+.selected-ipp {
+  color: white;
+  background-color: #ed863a;
+}

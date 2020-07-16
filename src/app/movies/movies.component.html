@@ -1,0 +1,72 @@
+<div class="container">
+
+  <div class="error">
+    <div *ngIf="serverError" class="message">Server error occured. Please, try again.</div>
+    <div *ngIf="serverError" (click)="serverError = false" class="clickable">X</div>
+  </div>
+
+  <div class="filter">
+    <input class="search" type="search" placeholder="Name" (input)="searchTyped($event)" />
+    <select (input)="genreSelected($event)">
+      <option value="any" [selected]="genre === ''">Genre</option>
+      <option *ngFor="let currGenre of allGenres" [selected]="currGenre === genre" value="{{ currGenre }}">{{ currGenre }}</option>
+    </select>
+    <select (input)="premiereYearSelected($event)">
+      <option value="any">Premiere Year</option>
+      <option *ngFor="let year of allPremiereYears" value="{{ year }}">{{ year }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="movies.length" class="table">
+    <div class="row header">
+      <div class="name clickable" (click)="sort('name')">
+        <span>Name</span><div *ngIf="sortBy=='name'" [class]="ascDesc"></div>
+      </div>
+      <div class="season clickable" (click)="sort('season')">
+        <span>Season</span><div *ngIf="sortBy=='season'" [class]="ascDesc"></div>
+      </div>
+      <div class="network">
+        <span>Network</span>
+      </div>
+      <div class="premiere clickable" (click)="sort('premiere')">
+        <span>Premiere</span><div *ngIf="sortBy=='premiere'" [class]="ascDesc"></div>
+      </div>
+    </div>
+
+    <div *ngFor="let movie of movies" class="row">
+      <div class="name">
+        {{ movie.name }}
+        <div class="genres">
+          <span
+            *ngFor="let genre of movie.genre"
+            class="genre clickable"
+            [class]="this.allGenres.includes(genre) ? genre.replace(' ', '-') : 'unknown-genre'"
+            (click)="genreSelected($event, genre)"
+          >{{ genre }}</span>
+        </div>
+      </div>
+      <div class="season">{{ movie.season }}</div>
+      <div class="network">{{ movie.network.join(', ') }}</div>
+      <div class="premiere">{{ movie.premiere | shortDate }}</div>
+    </div>
+  </div>
+
+  <div *ngIf="!movies.length" class="no-result">
+    No TV shows. Change search criteria and try again.
+  </div>
+
+  <div *ngIf="movies.length" class="footer">
+    <span *ngIf="pagesCount > 1" class="pages clickable">
+      <span (click)="changePage(page - 1)"> < </span>
+      <span *ngFor="let item of pagesArray; let i = index" [class.selected-page]="page == i + 1" (click)="changePage(i + 1)">{{ i + 1 }}</span>
+      <span (click)="changePage(page + 1)"> > </span>
+    </span>
+    <span *ngIf="pagesCount <= 1" class="pages"></span>
+
+    <div class="ipp clickable">
+      <span (click)="changeItemsPerPage(5)" [class.selected-ipp]="itemsPerPage == 5">5</span>
+      <span (click)="changeItemsPerPage(10)" [class.selected-ipp]="itemsPerPage == 10">10</span>
+      <span (click)="changeItemsPerPage(25)" [class.selected-ipp]="itemsPerPage == 25">25</span>
+    </div>
+  </div>
+</div>
